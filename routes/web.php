@@ -6,10 +6,14 @@ use App\Http\Controllers\admin\KokiController;
 use App\Http\Controllers\Admin\Manajemen\AddUsersController;
 use App\Http\Controllers\admin\manajemen\CategoriesController;
 use App\Http\Controllers\admin\manajemen\ListOrdersController;
+use App\Http\Controllers\admin\manajemen\ListsOrderPelayanController;
 use App\Http\Controllers\admin\manajemen\MenuItemsController;
+use App\Http\Controllers\admin\manajemen\OrderKasirController;
 use App\Http\Controllers\admin\manajemen\OrdersController;
 use App\Http\Controllers\Admin\Manajemen\SalariesController;
 use App\Http\Controllers\admin\PelayanController;
+use App\Http\Controllers\user\MenuUserController;
+use App\Http\Controllers\user\OrderUserController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -56,15 +60,23 @@ Route::middleware(['auth', 'role.koki'])->group(function () {
 
 Route::middleware(['auth', 'role.kasir'])->group(function () {
     Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.dashboard');
+
+    Route::resource('orders_kasir', OrderKasirController::class);
+    Route::get('/orders_kasir/{id}/print', [OrderKasirController::class, 'print'])->name('orders_kasir.print');
 });
 
 Route::middleware(['auth', 'role.pelayan'])->group(function () {
     Route::get('/pelayan', [PelayanController::class, 'index'])->name('pelayan.dashboard');
+
+    Route::resource('list-orders-waitress', ListsOrderPelayanController::class);
 });
 
-// Route::middleware(['auth', 'role.user'])->group(function () {
-//     Route::get('/home', [UserController::class, 'index'])->name('home');
-// });
+Route::middleware(['auth', 'role.user'])->group(function () {
+    Route::get('/home', [UserController::class, 'index'])->name('home');
+
+    Route::resource('list_menu', MenuUserController::class);
+    Route::resource('orders-user', OrderUserController::class);
+});
 
 // Contoh
 // Route::get('/', function () {

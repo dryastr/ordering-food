@@ -1,38 +1,18 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard Admin')
+@section('title', 'Dashboard Kasir')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center align-items-center" style="height: 75vh">
+        <div class="col-12 text-center">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h4 class="card-title">Daftar Pengguna</h4>
-                    </div>
+                    <h4 class="card-title">Selamat Datang, {{ Auth::user()->name }}!</h4>
                 </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="active" role="tabpanel"
-                                aria-labelledby="active-tab">
-                                <div class="table-responsive">
-                                    <table class="table table-striped mt-3">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <p class="lead">Ini adalah dashboard utama Anda. Silakan klik tombol di bawah untuk melihat daftar
+                        pesanan yang ada.</p>
+                    <a href="{{ url('/orders_kasir') }}" class="btn btn-primary">Lihat Pesanan</a>
                 </div>
             </div>
         </div>

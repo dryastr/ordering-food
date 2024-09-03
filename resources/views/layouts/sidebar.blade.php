@@ -134,6 +134,65 @@
                 </li>
             @endif
 
+            @if (auth()->user()->role->name == 'pelayan')
+                <li class="sidebar-item has-sub {{ Request::is('list-orders-waitress*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-card-checklist"></i>
+                        <span>Pesanan</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Request::routeIs('list-orders-waitress.index') ? 'active' : '' }}">
+                            <a href="{{ route('list-orders-waitress.index') }}" class="submenu-link">Daftar
+                                Pesanan</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if (auth()->user()->role->name == 'kasir')
+                <li class="sidebar-item has-sub {{ Request::is('orders_kasir*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-cart"></i>
+                        <span>Order</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Request::routeIs('orders_kasir.index') ? 'active' : '' }}">
+                            <a href="{{ route('orders_kasir.index') }}" class="submenu-link">Daftar Order</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if (auth()->user()->role->name == 'user')
+                <li class="sidebar-item has-sub {{ Request::is('list_menu*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-list-columns"></i>
+                        <span>Menu</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Request::routeIs('list_menu.index') ? 'active' : '' }}">
+                            <a href="{{ route('list_menu.index') }}" class="submenu-link">Daftar Menu</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub {{ Request::is('orders-user*') ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-cart"></i>
+                        <span>Orderan</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item {{ Request::routeIs('orders-user.index') ? 'active' : '' }}">
+                            <a href="{{ route('orders-user.index') }}" class="submenu-link">Daftar Orderan</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
             <li class="sidebar-item">
                 <a href="{{ route('logout') }}" class='sidebar-link'
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
