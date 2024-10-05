@@ -57,13 +57,13 @@ class OrderUserController extends Controller
     {
         $latestOrder = Order::latest('id')->first();
 
-        $latestCode = $latestOrder ? $latestOrder->code_order : 'RSTKD000';
+        $latestCode = $latestOrder ? $latestOrder->code_order : 'KO000';
 
         $number = (int)substr($latestCode, 5);
 
         $number++;
 
-        $code = 'RSTKD' . str_pad($number, 3, '0', STR_PAD_LEFT);
+        $code = 'KO' . str_pad($number, 3, '0', STR_PAD_LEFT);
 
         return $code;
     }
